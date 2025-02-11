@@ -6,18 +6,30 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
     private Rigidbody2D rb;
+    private Vector3 mousePos;
     private Vector2 moveInput;
     private Animator animator; //Animator Component
+    private Camera cam;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
     void Update()
     {
         rb.linearVelocity = moveInput * moveSpeed;
+        AimMousePoint();
+    }
+
+    public void AimMousePoint() {
+        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 rotation = mousePos - transform.position;
+
+        animator.SetFloat("MouseX", rotation.x);
+        animator.SetFloat("MouseY", rotation.y);
     }
 
 
@@ -30,13 +42,7 @@ public class PlayerMovement : MonoBehaviour
         if (context.canceled)
         {
             animator.SetBool("isWalking", false);
-            animator.SetFloat("LastInputX", moveInput.x);
-            animator.SetFloat("LastInputY", moveInput.y);
         }
-
         moveInput = context.ReadValue<Vector2>();
-
-        animator.SetFloat("InputX", moveInput.x);
-        animator.SetFloat("InputY", moveInput.y);
     }
 }
