@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
         AimMousePoint();
     }
 
+    //check Animator for more information..
     public void AimMousePoint() {
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         Vector3 rotation = mousePos - transform.position;
