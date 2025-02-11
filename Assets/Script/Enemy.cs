@@ -1,12 +1,33 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, HealthComponent
 {
-    private float moveSpeed = 2f;
     Transform target;
     Vector3 moveDirection;
     SpriteRenderer sprite;
     Animator animator;
+
+    private float moveSpeed = 2f;
+    public float Health { get; set; } = 100f;
+
+
+    public void takeDamage(float amount) {
+        Health -= amount;
+
+        //play death animatoin if dead
+        if (Health <= 0) {
+            animator.SetTrigger("Kill");
+            return;
+        }
+
+        //play hit animation if still alive
+        animator.SetTrigger("Hit");
+    }
+
+    //called by Death Animation
+    public void DestoryObject() {
+        Destroy(gameObject);
+    }
 
     void Awake() {
     }
@@ -21,10 +42,10 @@ public class Enemy : MonoBehaviour
     void Update() {
         if (target) {
             Vector3 direction = (target.position - transform.position).normalized;
-            moveDirection = direction;
+            moveDirection = direction.normalized;
 
             //flip sprite depending on player's position
-            sprite.flipX = target.position.x < -1;
+            sprite.flipX = target.position.x < -0.5;
         }
     }
 
@@ -36,7 +57,8 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.name == "Weapon") {
-            animator.SetTrigger("Hit");
+            takeDamage(20);
+            Debug.Log("Enemy has " + Health + " left");
         }
     }
 }
