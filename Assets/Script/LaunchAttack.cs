@@ -11,14 +11,6 @@ public class LaunchAttack : MonoBehaviour
         attackAnimator = GetComponent<Animator>();
         attackScript = GetComponentInChildren<Attack>();
 
-        if (attackAnimator != null)
-        {
-            Debug.Log("Animator found on: " + attackAnimator.gameObject.name);
-            Debug.Log("Attack script found on: " + attackScript.gameObject.name);
-        } else {
-            Debug.LogError("Animator not found on Weapon");
-        }
-
     }
 
     void Update()

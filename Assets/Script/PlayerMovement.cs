@@ -31,13 +31,9 @@ public class PlayerMovement : MonoBehaviour
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         Vector3 rotation = mousePos - transform.position;
 
-        if (rotation.x < -0.5f) {
-            playerSprite.flipX = true;
-        } else {
-            playerSprite.flipX = false;
-        }
+        //flip horizontantly based on the mouse position
+        playerSprite.flipX = rotation.x < -0.5f;
     }
-
 
     //Play animation for the player whichever state it is, using Input System Package
     public void Move(InputAction.CallbackContext context)
