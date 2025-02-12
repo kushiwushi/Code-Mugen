@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
     private Rigidbody2D rb;
+    private SpriteRenderer playerSprite;
     private Vector3 mousePos;
     private Vector2 moveInput;
     private Animator animator; //Animator Component
@@ -16,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        playerSprite = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -29,8 +31,11 @@ public class PlayerMovement : MonoBehaviour
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         Vector3 rotation = mousePos - transform.position;
 
-        animator.SetFloat("MouseX", rotation.x);
-        animator.SetFloat("MouseY", rotation.y);
+        if (rotation.x < -0.5f) {
+            playerSprite.flipX = true;
+        } else {
+            playerSprite.flipX = false;
+        }
     }
 
 
