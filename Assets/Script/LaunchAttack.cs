@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class LaunchAttack : MonoBehaviour
@@ -5,19 +6,28 @@ public class LaunchAttack : MonoBehaviour
     private Animator attackAnimator;
     private Attack attackScript;
 
-    void Start()
-    {
-        //instantiate component
+    public float attackSpd = 2f;
+
+    private void Awake() {
+        //instantiate components
         attackAnimator = GetComponent<Animator>();
         attackScript = GetComponentInChildren<Attack>();
+    }
+
+    void Start() {
+        StartCoroutine(Attack()); //start auto attack
+    }
+
+    void Update(){
 
     }
 
-    void Update()
-        {
-            if (Input.GetMouseButtonDown(0)) {
-                attackScript.AimMousePoint();
-                attackAnimator.SetTrigger("Attack");
-            }
+    IEnumerator Attack() {
+        while(true) {
+            yield return new WaitForSeconds(attackSpd);
+
+            attackScript.AimMousePoint();
+            attackAnimator.SetTrigger("Attack");
         }
+    }
 }
