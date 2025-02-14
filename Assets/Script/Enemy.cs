@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour, HealthComponent
     BoxCollider2D bc;
 
     private float moveSpeed = 1.5f;
-    public float Health { get; set; } = 100f;
+    public float Health { get; set; } = 60f;
 
     //reset enemy state
     public void ResetEnemy() {
@@ -59,7 +59,6 @@ public class Enemy : MonoBehaviour, HealthComponent
     void Start() {
 
     }
-
 
     void Update() {
         if (target) {

@@ -5,6 +5,7 @@ public class LaunchAttack : MonoBehaviour
 {
     private Animator attackAnimator;
     private Attack attackScript;
+    AudioManager audioManager;
 
     public float attackSpd = 2f;
 
@@ -12,6 +13,7 @@ public class LaunchAttack : MonoBehaviour
         //instantiate components
         attackAnimator = GetComponent<Animator>();
         attackScript = GetComponentInChildren<Attack>();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
     void Start() {
@@ -25,7 +27,7 @@ public class LaunchAttack : MonoBehaviour
     IEnumerator Attack() {
         while(true) {
             yield return new WaitForSeconds(attackSpd);
-
+            audioManager.PlaySFX(audioManager.attack);
             attackScript.AimMousePoint();
             attackAnimator.SetTrigger("Attack");
         }
