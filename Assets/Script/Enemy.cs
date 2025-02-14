@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour, HealthComponent
@@ -12,6 +13,16 @@ public class Enemy : MonoBehaviour, HealthComponent
     private float moveSpeed = 1.5f;
     public float Health { get; set; } = 100f;
 
+    //reset enemy state
+    public void ResetEnemy() {
+        Health = 100f;
+        bc.enabled = true;
+        sprite.enabled = true;
+
+        Color spriteColor = sprite.color;
+        spriteColor.a = 1f;
+        sprite.color = spriteColor;
+    }
 
     public void takeDamage(float amount) {
         Health -= amount;
@@ -31,14 +42,11 @@ public class Enemy : MonoBehaviour, HealthComponent
     }
 
     //called by Death Animation State
-    public void DestoryObject() {
-        Destroy(gameObject);
+    public void DestroyObject() {
+        gameObject.SetActive(false);
     }
 
     void Awake() {
-    }
-
-    void Start() {
         target = GameObject.Find("Player").transform;
         sprite = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
@@ -46,6 +54,10 @@ public class Enemy : MonoBehaviour, HealthComponent
         bc = GetComponent<BoxCollider2D>();
 
         rb.freezeRotation = true;
+    }
+
+    void Start() {
+
     }
 
 
