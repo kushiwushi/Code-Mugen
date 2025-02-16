@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour, HealthComponent
     private float moveSpeed = 1.5f;
     public float Health { get; set; } = 60f;
 
-    //reset enemy state
+    //reset enemy states when re-spawned from object loop
     public void ResetEnemy() {
         Health = 100f;
         bc.enabled = true;
@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour, HealthComponent
         animator.SetTrigger("Hit");
     }
 
-    //called by Death Animation State
+    //called by Death Animation Event State
     public void DestroyObject() {
         gameObject.SetActive(false);
     }
@@ -65,7 +65,7 @@ public class Enemy : MonoBehaviour, HealthComponent
             Vector2 direction = (target.position - transform.position).normalized;
             moveDirection = direction;
 
-            //flip sprite depending on player's position
+            //flip sprite x-axis depending on player's position
             sprite.flipX = direction.x < 0;
         }
     }
@@ -77,6 +77,7 @@ public class Enemy : MonoBehaviour, HealthComponent
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
+        //if collider collides with object named "Weapon" then deal damage, there could be some better ways to do this..
         if (other.gameObject.name == "Weapon") {
             takeDamage(20);
         }
