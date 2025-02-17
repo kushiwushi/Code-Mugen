@@ -11,11 +11,12 @@ public class Enemy : MonoBehaviour, HealthComponent
     BoxCollider2D bc;
 
     private float moveSpeed = 1.5f;
-    public float Health { get; set; } = 60f;
+
+    public float Health { get; set; }
 
     //reset enemy states when re-spawned from object loop
     public void ResetEnemy() {
-        Health = 100f;
+        Health = 60f;
         bc.enabled = true;
         sprite.enabled = true;
 
@@ -57,7 +58,8 @@ public class Enemy : MonoBehaviour, HealthComponent
     }
 
     void Start() {
-
+        Health = 60f;
+        Debug.Log("Enemies Health: " + Health);
     }
 
     void Update() {
@@ -77,8 +79,7 @@ public class Enemy : MonoBehaviour, HealthComponent
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        //if collider collides with object named "Weapon" then deal damage, there could be some better ways to do this..
-        if (other.gameObject.name == "Weapon") {
+        if (other.CompareTag("Weapon")) {
             takeDamage(20);
         }
     }
