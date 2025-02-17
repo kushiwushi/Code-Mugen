@@ -16,11 +16,29 @@ public class EnemySpawner : MonoBehaviour
             yield return new WaitForSeconds(spawnInterval);
 
             GameObject enemyObject = EnemyPool.instance.GetPoolObject();
+            Vector3 screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
 
-            Vector2 randomPosition = new Vector2(
-                Random.Range(-10f, 10f),
-                Random.Range(-6f, 6f)
-            );
+            //randomize axis position
+            int side = Random.Range(0, 4);
+            float spawnOffset = 2f;
+            Vector2 spawnPosition = Vector2.zero;
+
+
+            switch (side)
+            {
+                case 0: // Left
+                    spawnPosition = new Vector2(-screenBounds.x - spawnOffset, Random.Range(-screenBounds.y, screenBounds.y));
+                    break;
+                case 1: // Right
+                    spawnPosition = new Vector2(screenBounds.x + spawnOffset, Random.Range(-screenBounds.y, screenBounds.y));
+                    break;
+                case 2: // Top
+                    spawnPosition = new Vector2(Random.Range(-screenBounds.x, screenBounds.x), screenBounds.y + spawnOffset);
+                    break;
+                case 3: // Bottom
+                    spawnPosition = new Vector2(Random.Range(-screenBounds.x, screenBounds.x), -screenBounds.y - spawnOffset);
+                    break;
+            }
 
             if (enemyObject != null) {
                 Enemy enemy = enemyObject.GetComponent<Enemy>();
@@ -28,7 +46,7 @@ public class EnemySpawner : MonoBehaviour
 
             }
 
-            enemyObject.transform.position = randomPosition;
+            enemyObject.transform.position = spawnPosition;
             enemyObject.SetActive(true);
         }
     }
