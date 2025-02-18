@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour, HealthComponent
     BoxCollider2D bc;
 
     private float moveSpeed = 1.5f;
+    private float damage = 20;
 
     public float Health { get; set; }
 
@@ -59,7 +60,6 @@ public class Enemy : MonoBehaviour, HealthComponent
 
     void Start() {
         Health = 60f;
-        Debug.Log("Enemies Health: " + Health);
     }
 
     void Update() {
@@ -79,6 +79,16 @@ public class Enemy : MonoBehaviour, HealthComponent
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
+
+        PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
+
+        //if collides with player, deal damage to player
+        if (playerHealth != null) {
+            playerHealth.takeDamage(damage);
+            return;
+        }
+
+        //if collided with sword, deal daamge to itself
         if (other.CompareTag("Weapon")) {
             takeDamage(20);
         }

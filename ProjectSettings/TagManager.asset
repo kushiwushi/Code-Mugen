@@ -6,6 +6,8 @@ TagManager:
   tags:
   - AttackAnimator
   - Audio
+  - Enemy
+  - Weapon
   layers:
   - Default
   - TransparentFX
@@ -14,7 +16,7 @@ TagManager:
   - Water
   - UI
   - Enemy
-  - 
+  - Weapon
   - 
   - 
   - 

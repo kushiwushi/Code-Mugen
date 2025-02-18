@@ -17,13 +17,8 @@ public class PlayerHealth : MonoBehaviour, HealthComponent
     void Start() {
         Health = maxHealth;
         healthUI.SetMaxHealth(Health);
-    }
 
-    //still buggy, this gets triggered by the sword collider when it hits an enemy
-    private void OnTriggerEnter2D(Collider2D other) {
-        if (other.CompareTag("Enemy")) {
-            takeDamage(20);
-        }
+
     }
 
     public void takeDamage(float amount) {

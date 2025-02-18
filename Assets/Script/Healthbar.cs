@@ -4,6 +4,12 @@ using UnityEngine.UI;
 public class Healthbar : MonoBehaviour
 {
     public Slider slider;
+    private float targetHealth;
+    private float smoothSpeed = 5f;
+
+    void Update() {
+        slider.value = Mathf.Lerp(slider.value, targetHealth, Time.deltaTime * smoothSpeed);
+    }
 
     private void Awake() {
         slider = GetComponent<Slider>();
@@ -11,10 +17,10 @@ public class Healthbar : MonoBehaviour
 
     public void SetMaxHealth(float health) {
         slider.maxValue = health;
-        slider.value = health;
+        targetHealth = health;
     }
 
     public void SetHealth(float health) {
-        slider.value = health;
+        targetHealth = health;
     }
 }
