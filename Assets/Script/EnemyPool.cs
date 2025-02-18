@@ -34,6 +34,11 @@ public class EnemyPool : MonoBehaviour
                 return pooledObjects[i];
             }
         }
-        return null;
+
+        GameObject newObj = Instantiate(enemyPrefab);
+        newObj.SetActive(false);
+        pooledObjects.Add(newObj);
+
+        return newObj;
     }
 }

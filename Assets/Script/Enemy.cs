@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour, HealthComponent
     SpriteRenderer sprite;
     Animator animator;
     Rigidbody2D rb;
-    BoxCollider2D bc;
+    CircleCollider2D circleCollider;
 
     private float moveSpeed = 1.5f;
     private float damage = 20;
@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour, HealthComponent
     //reset enemy states when re-spawned from object loop
     public void ResetEnemy() {
         Health = 60f;
-        bc.enabled = true;
+        circleCollider.enabled = true;
         sprite.enabled = true;
 
         Color spriteColor = sprite.color;
@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour, HealthComponent
         //play death animatoin if dead
         if (Health <= 0) {
 
-            bc.enabled = false; //stops restarting animation state
+            circleCollider.enabled = false; //stops restarting animation state
 
             animator.SetTrigger("Kill");
             return;
@@ -53,7 +53,7 @@ public class Enemy : MonoBehaviour, HealthComponent
         sprite = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        bc = GetComponent<BoxCollider2D>();
+        circleCollider = GetComponent<CircleCollider2D>();
 
         rb.freezeRotation = true;
     }
@@ -80,7 +80,7 @@ public class Enemy : MonoBehaviour, HealthComponent
 
     private void OnTriggerEnter2D(Collider2D other) {
 
-        PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
+        PlayerHealth playerHealth = other.transform.parent?.GetComponent<PlayerHealth>();
 
         //if collides with player, deal damage to player
         if (playerHealth != null) {
@@ -93,4 +93,5 @@ public class Enemy : MonoBehaviour, HealthComponent
             takeDamage(20);
         }
     }
+
 }

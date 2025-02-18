@@ -48,6 +48,12 @@ TagManager:
   - name: Ground
     uniqueID: 1145882795
     locked: 0
+  - name: Decoration
+    uniqueID: 4101769911
+    locked: 0
+  - name: Collider
+    uniqueID: 2294237523
+    locked: 0
   - name: Player
     uniqueID: 3316940895
     locked: 0
@@ -56,6 +62,9 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 3857538549
+    locked: 0
+  - name: Walls
+    uniqueID: 895666633
     locked: 0
   - name: UI
     uniqueID: 589281521
