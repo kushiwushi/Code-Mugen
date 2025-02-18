@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator; //Animator Component
     private Camera cam;
 
+    //checks if player is on hub or not, required for the Transition Script
     public bool isOnHub = false;
 
     void Start()
