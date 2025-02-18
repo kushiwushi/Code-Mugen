@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator; //Animator Component
     private Camera cam;
 
+    public bool isOnHub = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
