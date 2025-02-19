@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour, HealthComponent
@@ -13,7 +14,15 @@ public class Enemy : MonoBehaviour, HealthComponent
     private float moveSpeed = 1.5f;
     private float damage = 20;
 
+    [System.Serializable]
+    public struct ItemDrop
+    {
+        public GameObject itemPrefab;
+        [Range(0, 100)] public float dropChance; // Percentage chance
+    }
+
     public float Health { get; set; }
+    public List<ItemDrop> itemDrops;
 
     //reset enemy states when re-spawned from object loop
     public void ResetEnemy() {
@@ -34,8 +43,8 @@ public class Enemy : MonoBehaviour, HealthComponent
         if (Health <= 0) {
 
             circleCollider.enabled = false; //stops restarting animation state
-
             animator.SetTrigger("Kill");
+            DropItems(); // Call DropItems *here* when the enemy is dead
             return;
         }
 
@@ -46,6 +55,17 @@ public class Enemy : MonoBehaviour, HealthComponent
     //called by Death Animation Event State
     public void DestroyObject() {
         gameObject.SetActive(false);
+    }
+
+    private void DropItems()
+    {
+        foreach (ItemDrop itemDrop in itemDrops)
+        {
+            if (Random.Range(0, 100) <= itemDrop.dropChance)
+            {
+                Instantiate(itemDrop.itemPrefab, transform.position, Quaternion.identity);
+            }
+        }
     }
 
     void Awake() {

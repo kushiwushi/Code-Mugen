@@ -25,9 +25,6 @@ public class CameraFollow : MonoBehaviour
             minBounds = new Vector2(bounds.min.x + camWidth, bounds.min.y + camHeight);
             maxBounds = new Vector2(bounds.max.x - camWidth, bounds.max.y - camHeight);
         }
-
-        Debug.Log(minBounds);
-        Debug.Log(maxBounds);
     }
 
     void Update()
