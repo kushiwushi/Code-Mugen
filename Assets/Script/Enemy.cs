@@ -14,6 +14,8 @@ public class Enemy : MonoBehaviour, HealthComponent
     private float moveSpeed = 1.5f;
     private float damage = 20;
 
+    [SerializeField] public GameObject expPrefab;
+
     [System.Serializable]
     public struct ItemDrop
     {
@@ -59,11 +61,13 @@ public class Enemy : MonoBehaviour, HealthComponent
 
     private void DropItems()
     {
+        Instantiate(expPrefab, transform.position, Quaternion.identity); //drops exp crystals
+
         foreach (ItemDrop itemDrop in itemDrops)
         {
             if (Random.Range(0, 100) <= itemDrop.dropChance)
             {
-                Instantiate(itemDrop.itemPrefab, transform.position, Quaternion.identity);
+                Instantiate(itemDrop.itemPrefab, transform.position + new Vector3(1.5f, 0f, 0f), Quaternion.identity);
             }
         }
     }

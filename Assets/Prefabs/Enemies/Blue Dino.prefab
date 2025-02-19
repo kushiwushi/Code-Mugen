@@ -78,7 +78,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1428654795
-  m_SortingLayer: 5
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -1193820911090328509, guid: d27e5b916bf11a04482e64f485863885, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -125,9 +125,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8978a56f7e8b0724c9d569bbb2814b4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  expPrefab: {fileID: 6943353031891263408, guid: 6f2c2daf8edb41c4982f1fdd43bbab6c, type: 3}
   itemDrops:
   - itemPrefab: {fileID: 6839299914736497211, guid: cd751000c4a05424582cf4809b79edb0, type: 3}
-    dropChance: 95.9
+    dropChance: 30
 --- !u!50 &2968548632238882834
 Rigidbody2D:
   serializedVersion: 5
