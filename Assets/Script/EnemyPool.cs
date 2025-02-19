@@ -1,15 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//needs modification to work with wave manager
 public class EnemyPool : MonoBehaviour
 {
     public static EnemyPool instance;
 
-    private List<GameObject> pooledObjects = new List<GameObject>();
+    private Dictionary<GameObject, List<GameObject>> enemyPools = new Dictionary<GameObject, List<GameObject>>();
     private int poolSize = 20;
-
-    [SerializeField]
-    private GameObject enemyPrefab;
 
     private void Awake() {
         if (instance == null) {
@@ -17,27 +15,26 @@ public class EnemyPool : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        for (int i = 0; i < poolSize; i++)
-        {
-            GameObject obj = Instantiate(enemyPrefab);
-            obj.SetActive(false);
-            pooledObjects.Add(obj);
-        }
-    }
+    public GameObject GetPoolObject(GameObject enemyPrefab) {
+        if (!enemyPools.ContainsKey(enemyPrefab)) {
+            enemyPools[enemyPrefab] = new List<GameObject>();
 
-    public GameObject GetPoolObject() {
-        for (int i = 0; i < pooledObjects.Count; i++)
-        {
-            if (!pooledObjects[i].activeInHierarchy) {
-                return pooledObjects[i];
+            for (int i = 0; i < poolSize; i++) {
+                GameObject obj = Instantiate(enemyPrefab);
+                obj.SetActive(false);
+                enemyPools[enemyPrefab].Add(obj);
+            }
+        }
+
+        foreach (GameObject obj in enemyPools[enemyPrefab]) {
+            if (!obj.activeInHierarchy) {
+                return obj;
             }
         }
 
         GameObject newObj = Instantiate(enemyPrefab);
         newObj.SetActive(false);
-        pooledObjects.Add(newObj);
+        enemyPools[enemyPrefab].Add(newObj);
 
         return newObj;
     }
