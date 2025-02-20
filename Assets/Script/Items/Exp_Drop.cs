@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Exp_Drop : MonoBehaviour
 {
-    public int exp_amount = 30;
+    public int exp_amount = 20;
 
     private void OnTriggerEnter2D(Collider2D other)
     {

@@ -4,23 +4,22 @@ using UnityEngine.UI;
 public class PlayerLevel : MonoBehaviour
 {
     [SerializeField] private Text currentLevel;
-
     public ExperienceBar expBar;
+    private PlayerStats playerStats;
 
-    public int Level { get; private set; }
     public int Experience { get; private set; }
 
     private void Awake()
     {
-        Level = 1;
-        Experience = 0;
+        playerStats = GetComponent<PlayerStats>();
 
+        Experience = 0;
         expBar.SetMaxExp(ExperienceRequired());
     }
 
     private void Start()
     {
-        currentLevel.text = $"Level {Level}";
+        currentLevel.text = $"Level {playerStats.Level}";
     }
 
     public void GainExperience(int exp)
@@ -32,18 +31,18 @@ public class PlayerLevel : MonoBehaviour
         while (Experience >= requiredExp)
         {
             Experience -= ExperienceRequired();
-            Level++;
+            playerStats.SetLevel();
 
             requiredExp = ExperienceRequired();
             expBar.SetMaxExp(requiredExp);
         }
 
         expBar.SetExp(Experience);
-        currentLevel.text = $"Level {Level}";
+        currentLevel.text = $"Level {playerStats.Level}";
     }
 
     private int ExperienceRequired()
     {
-        return Level * 150;
+        return playerStats.Level * 150;
     }
 }

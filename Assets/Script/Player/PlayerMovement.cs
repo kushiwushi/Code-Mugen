@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 5f;
     private Rigidbody2D rb;
     private SpriteRenderer playerSprite;
     private Vector3 mousePos;
@@ -12,11 +11,13 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator; //Animator Component
     private Camera cam;
 
+    private PlayerStats playerStats;
     //checks if player is on hub or not, required for the Transition Script
     public bool isOnHub = false;
 
     void Start()
     {
+        playerStats = GetComponent<PlayerStats>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -25,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        rb.linearVelocity = moveInput * moveSpeed;
+        rb.linearVelocity = moveInput * playerStats.MoveSpeed;
         AimMousePoint();
     }
 

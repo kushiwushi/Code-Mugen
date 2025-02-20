@@ -6971,6 +6971,7 @@ GameObject:
   - component: {fileID: 553901363}
   - component: {fileID: 553901365}
   - component: {fileID: 553901366}
+  - component: {fileID: 553901367}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -7112,7 +7113,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86f14f5771cc37447a1b904f2a83644d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
   isOnHub: 0
 --- !u!114 &553901362
 MonoBehaviour:
@@ -7244,7 +7244,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 990c823af3de11d4b8527efe35ad005a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSpd: 2
 --- !u!61 &553901364
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7320,6 +7319,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentLevel: {fileID: 148715227}
   expBar: {fileID: 1660814129}
+--- !u!114 &553901367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553901356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2199620b5cd3f184e964a88de4534e41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerLevel: 1
+  maxHealth: 100
+  defense: 5
+  moveSpeed: 5
+  luck: 0
+  damage: 20
+  haste: 2
+  critRate: 10
+  pickupRange: 20
 --- !u!1 &564233473
 GameObject:
   m_ObjectHideFlags: 0

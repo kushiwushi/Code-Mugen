@@ -9,16 +9,6 @@ public class Attack : MonoBehaviour
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
-    }
-
     public void AimMousePoint() {
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         Vector3 rotation = mousePos - transform.position;

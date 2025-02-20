@@ -14,6 +14,12 @@ public class Enemy : MonoBehaviour, HealthComponent
     private float moveSpeed = 1.5f;
     private float damage = 20;
 
+    public static List<Enemy> allEnemies = new List<Enemy>();
+
+    private void OnEnable() { allEnemies.Add(this); }
+    private void OnDisable() { allEnemies.Remove(this); }
+
+    //item drops <
     [SerializeField] public GameObject expPrefab;
 
     [System.Serializable]
@@ -22,6 +28,7 @@ public class Enemy : MonoBehaviour, HealthComponent
         public GameObject itemPrefab;
         [Range(0, 100)] public float dropChance; // Percentage chance
     }
+    //item drops >
 
     public float Health { get; set; }
     public List<ItemDrop> itemDrops;
@@ -87,12 +94,26 @@ public class Enemy : MonoBehaviour, HealthComponent
     }
 
     void Update() {
+
         if (target) {
             Vector2 direction = (target.position - transform.position).normalized;
+
+            //separate enemies smoothly to prevent clamping
+            foreach (Enemy other in allEnemies) {
+                if (other != this) {
+                    float distance = Vector2.Distance(transform.position, other.transform.position);
+                    if (distance < 0.7f) {
+                        direction += (Vector2)(transform.position - other.transform.position).normalized * 0.2f;
+                    }
+                }
+            }
+
             moveDirection = direction;
 
             //flip sprite x-axis depending on player's position
-            sprite.flipX = direction.x < 0;
+            if (Mathf.Abs(direction.x) > 0.1f) {
+                sprite.flipX = direction.x < 0;
+            }
         }
     }
 
