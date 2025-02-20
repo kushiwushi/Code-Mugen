@@ -32,6 +32,7 @@ public class PlayerStats : MonoBehaviour
     //offensives
     public float Damage => damage;
     public float AttackSpeed => haste;
+    public float CritRate => critRate;
 
     //misc
     public float PickupRange => pickupRange;

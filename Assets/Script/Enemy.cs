@@ -11,8 +11,8 @@ public class Enemy : MonoBehaviour, HealthComponent
     Rigidbody2D rb;
     CircleCollider2D circleCollider;
 
-    private float moveSpeed = 1.5f;
-    private float damage = 20;
+    public float moveSpeed = 1.5f;
+    public float damage = 20;
 
     public static List<Enemy> allEnemies = new List<Enemy>();
 
@@ -124,19 +124,8 @@ public class Enemy : MonoBehaviour, HealthComponent
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-
-        PlayerHealth playerHealth = other.transform.parent?.GetComponent<PlayerHealth>();
-
-        //if collides with player, deal damage to player
-        if (playerHealth != null) {
+        if (other.TryGetComponent(out PlayerHealth playerHealth)) {
             playerHealth.takeDamage(damage);
-            return;
-        }
-
-        //if collided with sword, deal daamge to itself
-        if (other.CompareTag("Weapon")) {
-            takeDamage(20);
         }
     }
-
 }

@@ -8,6 +8,7 @@ TagManager:
   - Audio
   - Enemy
   - Weapon
+  - S_orbs
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - Water
   - UI
   - Enemy
-  - Weapon
+  - Weapons
   - Item Drop
   - 
   - 

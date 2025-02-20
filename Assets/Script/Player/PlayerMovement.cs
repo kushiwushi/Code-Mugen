@@ -12,11 +12,13 @@ public class PlayerMovement : MonoBehaviour
     private Camera cam;
 
     private PlayerStats playerStats;
+    private PlayerHealth playerHealth;
     //checks if player is on hub or not, required for the Transition Script
     public bool isOnHub = false;
 
     void Start()
     {
+        playerHealth = GetComponent<PlayerHealth>();
         playerStats = GetComponent<PlayerStats>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
