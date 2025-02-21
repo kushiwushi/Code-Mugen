@@ -39,7 +39,43 @@ public class PlayerStats : MonoBehaviour
 
 
     //setters - will add later..
-    public void SetLevel() {
+    public void SetLevel()
+    {
         playerLevel++;
+    }
+
+    public void SetMoveSpeed(float value)
+    {
+        moveSpeed *= value;
+    }
+
+    public void SetDamge(float value)
+    {
+        damage *= value;
+    }
+
+    public void SetDefense(float value)
+    {
+        defense += value;
+    }
+
+    public void SetHaste(float value)
+    {
+        haste *= value;
+    }
+
+    public void SetLuck(float value)
+    {
+        luck += value;
+    }
+
+    public void SetCritRate(float value)
+    {
+        critRate += value;
+    }
+
+    public void SetPickupRange(float value)
+    {
+        pickupRange *= value;
     }
 }

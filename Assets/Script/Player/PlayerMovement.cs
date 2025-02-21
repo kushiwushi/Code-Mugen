@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
 
     private PlayerStats playerStats;
     private PlayerHealth playerHealth;
+    [SerializeField] private BuffUIController buffUIController; //pause event
+
     //checks if player is on hub or not, required for the Transition Script
     public bool isOnHub = false;
 
@@ -29,7 +31,11 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         rb.linearVelocity = moveInput * playerStats.MoveSpeed;
-        AimMousePoint();
+
+        if (!buffUIController.IsPaused)
+        {
+            AimMousePoint();
+        }
     }
 
     //check Animator for more information..

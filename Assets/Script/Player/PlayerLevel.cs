@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class PlayerLevel : MonoBehaviour
 {
     [SerializeField] private Text currentLevel;
+    [SerializeField] private BuffUIController buffUIController;
     public ExperienceBar expBar;
     private PlayerStats playerStats;
 
@@ -35,6 +36,7 @@ public class PlayerLevel : MonoBehaviour
 
             requiredExp = ExperienceRequired();
             expBar.SetMaxExp(requiredExp);
+            buffUIController.ShowBuffSelection();
         }
 
         expBar.SetExp(Experience);
