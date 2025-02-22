@@ -8,7 +8,7 @@ public class PlayerStats : MonoBehaviour
     [Header("Self")]
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] private float defense = 5f;
-    [SerializeField] private float moveSpeed = 4f;
+    [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private float luck = 0f;
 
     [Header("Offensives")]
@@ -18,6 +18,9 @@ public class PlayerStats : MonoBehaviour
 
     [Header("Miscallenous")]
     [SerializeField] private float pickupRange = 20f;
+
+    [Header("Scripts")]
+    [SerializeField] PlayerMovement playerMovement;
 
 
     //I did this so you can modify the values through the inspector whilst keeping the variables private
@@ -37,7 +40,6 @@ public class PlayerStats : MonoBehaviour
     //misc
     public float PickupRange => pickupRange;
 
-
     //setters - will add later..
     public void SetLevel()
     {
@@ -47,6 +49,9 @@ public class PlayerStats : MonoBehaviour
     public void SetMoveSpeed(float value)
     {
         moveSpeed *= value;
+
+        //update dash
+        playerMovement.currMoveSpeed = moveSpeed;
     }
 
     public void SetDamge(float value)

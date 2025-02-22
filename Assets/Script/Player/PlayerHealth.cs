@@ -42,8 +42,5 @@ public class PlayerHealth : MonoBehaviour, HealthComponent
         }
 
         healthUI.SetHealth(Health);
-        // Optionally update UI here if needed
-        Debug.Log("Player Health: " + currentHealth); // Example
     }
-
 }

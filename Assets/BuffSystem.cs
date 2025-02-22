@@ -39,6 +39,7 @@ public class BuffSystem : MonoBehaviour
         {
             Instantiate(buffPrefab, player.transform);
         }
+
         runtimeBuffs.Remove(buffPrefab); //remove from the list of taken already
     }
 }

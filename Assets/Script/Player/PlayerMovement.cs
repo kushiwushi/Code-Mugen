@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private PlayerStats playerStats;
     [SerializeField] private BuffUIController buffUI;
     private Rigidbody2D rb;
     private SpriteRenderer playerSprite;
@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private Camera cam;
 
     private bool DashOffCooldown = true;
+    public float currMoveSpeed;
 
     //checks if player is on hub or not, required for the Transition Script
     public bool isOnHub = false;
@@ -26,11 +27,12 @@ public class PlayerMovement : MonoBehaviour
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         playerSprite = GetComponent<SpriteRenderer>();
 
+        currMoveSpeed = playerStats.MoveSpeed;
     }
 
     void Update()
     {
-        rb.linearVelocity = moveInput * moveSpeed;
+        rb.linearVelocity = moveInput * currMoveSpeed;
 
         if (!buffUI.IsPaused)
         {
@@ -71,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
             DashOffCooldown = false;
             float DashDuration = 0.2f;
             int DashCooldown = 3; // longer cooldowns maybe, this is way too short and easily usable to get out of tight spots
-            moveSpeed = 25f;
+            currMoveSpeed = 25f;
             Invoke("DashStop", DashDuration);
             Invoke("ResetDashCooldown", DashCooldown);
             Debug.Log("Dash");
@@ -85,13 +87,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void DashStop()
     {
-        moveSpeed = 5f;
-
+        currMoveSpeed = playerStats.MoveSpeed;
     }
 
     public void ResetDashCooldown()
     {
         DashOffCooldown = true;
     }
-
 }

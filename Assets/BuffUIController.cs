@@ -10,6 +10,8 @@ public class BuffUIController : MonoBehaviour
     public Button[] buttons;
     [SerializeField] private BuffSystem buffSystem;
     [SerializeField] private Sprite nullPlaceholder;
+    [SerializeField] private AudioSource bgmController;
+    [SerializeField] private AudioManager sfxController;
 
     public bool IsPaused = false;
 
@@ -22,6 +24,8 @@ public class BuffUIController : MonoBehaviour
     {
         Time.timeScale = 0;
         IsPaused = true;
+        sfxController.PlaySFX(sfxController.LevelUp);
+        bgmController.volume = 0.3f;
         panel.SetActive(true);
         RandomizeBuffList();
     }
@@ -63,5 +67,6 @@ public class BuffUIController : MonoBehaviour
         panel.SetActive(false);
         IsPaused = false;
         Time.timeScale = 1;
+        bgmController.volume = 0.8f;
     }
 }

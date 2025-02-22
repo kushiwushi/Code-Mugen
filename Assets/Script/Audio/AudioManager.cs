@@ -7,9 +7,11 @@ public class AudioManager : MonoBehaviour
 
     public AudioClip bgm;
     public AudioClip attack;
+    public AudioClip LevelUp;
 
     private void Start() {
         musicSorce.clip = bgm;
+        musicSorce.volume = 0.8f;
         musicSorce.Play();
     }
 
