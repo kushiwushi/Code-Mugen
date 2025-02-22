@@ -17,35 +17,34 @@ public class WaveManager : MonoBehaviour
         StartCoroutine(StartWave());
     }
 
-    IEnumerator StartWave() {
-        while (currentWaveIndex < waves.Length)
+    IEnumerator StartWave()
+    {
+        while (true) // Change to an infinite loop
         {
-            WaveData currentWave = waves[currentWaveIndex];
-            waveLevel.text = $"Wave {currentWaveIndex + 1}";
+            int waveIndexToUse = Mathf.Min(currentWaveIndex, waves.Length - 1); // Get the wave index, capped at the last wave
+            WaveData currentWave = waves[waveIndexToUse];
+            waveLevel.text = $"Wave {waveIndexToUse + 1}";
 
-            //Array of enemies
             foreach (WaveData.EnemySpawnData enemyData in currentWave.enemies)
             {
-                //Enemy count per enemy
                 for (int i = 0; i < enemyData.count; i++)
                 {
-                    //Spawn enemy
                     SpawnEnemy(enemyData.enemyPrefab);
                     yield return new WaitForSeconds(enemyData.spawnDelay);
                 }
             }
 
-            //wait till enemies in the current wave is eliminated
             yield return new WaitUntil(() => AreAllEnemiesDefeated());
 
             waveCountdown = currentWave.waveDelay;
-            while (waveCountdown > 0) {
+            while (waveCountdown > 0)
+            {
                 waveTimer.text = $"Next wave in: {waveCountdown:F0}s";
                 yield return new WaitForSeconds(1f);
                 waveCountdown--;
             }
             waveTimer.text = "";
-            waveLevel.text = $"Wave {currentWaveIndex + 1}";
+            waveLevel.text = $"Wave {waveIndexToUse + 1}";
             currentWaveIndex++;
         }
     }
@@ -64,7 +63,39 @@ public class WaveManager : MonoBehaviour
                 enemy.ResetEnemy();
             }
 
-            enemyObject.transform.position = Vector2.zero;
+            enemyObject.transform.position = GetRandomSpawnPosition(); // Use the random position function
+            //enemyObject.transform.position = Vector2.zero;
             enemyObject.SetActive(true);
     }
+
+    private Vector2 GetRandomSpawnPosition()
+    {
+        Vector2 screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
+        float offsetX = screenBounds.x * 0.2f; // 20% outside the screen
+        float offsetY = screenBounds.y * 0.2f; // 20% outside the screen
+
+        int edge = Random.Range(0, 4);
+
+        Vector2 spawnPosition = Vector2.zero;
+
+        switch (edge)
+        {
+            case 0: // Left
+                spawnPosition = new Vector2(-screenBounds.x - offsetX, Random.Range(-screenBounds.y - offsetY, screenBounds.y + offsetY));
+                break;
+            case 1: // Right
+                spawnPosition = new Vector2(screenBounds.x + offsetX, Random.Range(-screenBounds.y - offsetY, screenBounds.y + offsetY));
+                break;
+            case 2: // Bottom
+                spawnPosition = new Vector2(Random.Range(-screenBounds.x - offsetX, screenBounds.x + offsetX), -screenBounds.y - offsetY);
+                break;
+            case 3: // Top
+                spawnPosition = new Vector2(Random.Range(-screenBounds.x - offsetX, screenBounds.x + offsetX), screenBounds.y + offsetY);
+                break;
+        }
+
+        return spawnPosition;
+    }
 }
+
+

@@ -19,7 +19,11 @@ TagManager:
   - Enemy
   - Weapons
   - Item Drop
+<<<<<<< Updated upstream
   - Walls
+=======
+  - Pause
+>>>>>>> Stashed changes
   - 
   - 
   - 
@@ -69,6 +73,9 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 589281521
+    locked: 0
+  - name: Pause
+    uniqueID: 15742895
     locked: 0
   m_RenderingLayers:
   - Default
