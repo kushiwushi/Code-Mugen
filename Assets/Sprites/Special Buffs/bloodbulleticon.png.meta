@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      bloodbulleticon_0: -8675604964442372074
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

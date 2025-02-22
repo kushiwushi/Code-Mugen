@@ -50,6 +50,7 @@ public class BuffUIController : MonoBehaviour
             } else
             {
                     buttons[i].GetComponentInChildren<TMP_Text>().text = "No more buffs, will add more soon!";
+                    buttons[i].transform.GetChild(2).GetComponentInChildren<TMP_Text>().text = "";
                     buttons[i].transform.GetChild(0).GetComponent<Image>().sprite = nullPlaceholder;
                     buttons[i].onClick.RemoveAllListeners();
             }

@@ -6,12 +6,14 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private BuffUIController buffUI;
     private Rigidbody2D rb;
     private SpriteRenderer playerSprite;
     private Vector3 mousePos;
     private Vector2 moveInput;
     private Animator animator; //Animator Component
     private Camera cam;
+
     private bool DashOffCooldown = true;
 
     //checks if player is on hub or not, required for the Transition Script
@@ -29,8 +31,11 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         rb.linearVelocity = moveInput * moveSpeed;
-        AimMousePoint();
 
+        if (!buffUI.IsPaused)
+        {
+            AimMousePoint();
+        }
     }
 
     //check Animator for more information..
@@ -90,5 +95,3 @@ public class PlayerMovement : MonoBehaviour
     }
 
 }
-
-

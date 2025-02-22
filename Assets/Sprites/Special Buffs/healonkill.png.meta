@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      healonkill_0: 9057247496345001947
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

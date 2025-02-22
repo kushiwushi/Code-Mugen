@@ -7,7 +7,7 @@ public class B_BloodyScythe : BuffBase
 
     public override void Initialize()
     {
-        buffName = "Bloody Sprite";
+        buffName = "Bloody Scythe";
         buffDescription = "Increase damage by 2x";
         sprite = buffSprite;
         isPassive = true;
