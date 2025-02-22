@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -42,8 +41,9 @@ public class BuffUIController : MonoBehaviour
                 if (buffData != null) {
                     buffData.Initialize();
 
-                    buttons[i].GetComponentInChildren<TMP_Text>().text = buffData.buffDescription;
                     buttons[i].transform.GetChild(0).GetComponent<Image>().sprite = buffData.sprite;
+                    buttons[i].transform.GetChild(1).GetComponentInChildren<TMP_Text>().text = buffData.buffName;
+                    buttons[i].transform.GetChild(2).GetComponentInChildren<TMP_Text>().text = buffData.buffDescription;
                     buttons[i].onClick.RemoveAllListeners();
                     buttons[i].onClick.AddListener(() => SelectBuff(buffData.buffName));
                 }

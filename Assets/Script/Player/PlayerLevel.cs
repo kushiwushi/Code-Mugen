@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerLevel : MonoBehaviour
 {
-    [SerializeField] private Text currentLevel;
     [SerializeField] private BuffUIController buffUIController;
+    [SerializeField] private TMP_Text playerLevelText;
+
     public ExperienceBar expBar;
     private PlayerStats playerStats;
 
@@ -20,7 +22,7 @@ public class PlayerLevel : MonoBehaviour
 
     private void Start()
     {
-        currentLevel.text = $"Level {playerStats.Level}";
+        playerLevelText.text = $"Level {playerStats.Level}";
     }
 
     public void GainExperience(int exp)
@@ -40,7 +42,7 @@ public class PlayerLevel : MonoBehaviour
         }
 
         expBar.SetExp(Experience);
-        currentLevel.text = $"Level {playerStats.Level}";
+        playerLevelText.text = $"Level {playerStats.Level}";
     }
 
     private int ExperienceRequired()
