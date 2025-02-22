@@ -1,17 +1,19 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class EndGame : MonoBehaviour
 {
+    [SerializeField] AudioManager audioManager;
     public GameObject gameOverUI;
-    public InputActionReference anyKeyAction; // Assign the "Any Key" action in the Inspector
+    public InputActionReference anyKeyAction;
     public bool gameOver = false;
 
     private void Awake()
     {
         anyKeyAction.action.performed += OnAnyKeyPressed;
-        anyKeyAction.action.Disable();
+        anyKeyAction.action.Enable();
         gameOverUI.SetActive(false);
     }
 
@@ -39,9 +41,18 @@ public class EndGame : MonoBehaviour
     {
         if (!gameOver)
         {
-            gameOver = true;
+            audioManager.PlaySFX(audioManager.gameover);
+            audioManager.StopMusicSource();
+
+            StartCoroutine(keyCooldown());
+
             Time.timeScale = 0f;
             gameOverUI.SetActive(true);
         }
+    }
+
+    IEnumerator keyCooldown() {
+        yield return new WaitForSecondsRealtime(3f);
+        gameOver = true;
     }
 }

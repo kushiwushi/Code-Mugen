@@ -17,7 +17,7 @@ public class MenuUI : MonoBehaviour
 
     IEnumerator LevelLoader(int idx) {
         transition.SetTrigger("OnPlay");
-        audioManager.PlaySFX(audioManager.LevelUp);
+        audioManager.PlaySFX(audioManager.play);
 
         yield return new WaitForSeconds(1);
 

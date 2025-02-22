@@ -137,7 +137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &30542606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6937,7 +6937,7 @@ MonoBehaviour:
   nullPlaceholder: {fileID: 21300000, guid: c4c6f258bba535948aa37728f197a822, type: 3}
   bgmController: {fileID: 1985702085}
   sfxController: {fileID: 1160830892}
-  IsPaused: 0
+  pauseGame: {fileID: 1787319448}
 --- !u!1 &407540031
 GameObject:
   m_ObjectHideFlags: 0
@@ -6983,7 +6983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9038070a4ec0214a9fe326e21a42574, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buffUIController: {fileID: 346857092}
+  pauseGame: {fileID: 1787319448}
 --- !u!1 &480712797
 GameObject:
   m_ObjectHideFlags: 0
@@ -7390,7 +7390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStats: {fileID: 553901367}
-  buffUI: {fileID: 346857092}
+  pauseGame: {fileID: 1787319448}
   currMoveSpeed: 5
   isOnHub: 0
 --- !u!114 &553901362
@@ -12142,10 +12142,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1454857007}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 999, y: 999}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &704934755
 MonoBehaviour:
@@ -12160,7 +12160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 0.12156863}
+  m_Color: {r: 0.16037738, g: 0.16037738, b: 0.16037738, a: 0.5529412}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -17520,11 +17520,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6906e2444058af043b933e130689c4ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicSorce: {fileID: 1985702085}
+  musicSource: {fileID: 1985702085}
   SFXSource: {fileID: 74120170}
   bgm: {fileID: 8300000, guid: 3a0935e89d66cd848b96a90b0f473c39, type: 3}
   attack: {fileID: 8300000, guid: f2f6e16da004dfe4d92df50ff1049af1, type: 3}
-  LevelUp: {fileID: 8300000, guid: d02a742b951a3fa49852703fa76402b9, type: 3}
+  LevelUp: {fileID: 8300000, guid: 6fbe09625c5b7fa4f87898c8e9362428, type: 3}
+  play: {fileID: 0}
+  pause: {fileID: 8300000, guid: 1075c8dc05b9cbe468ea574c2038474f, type: 3}
+  unPause: {fileID: 8300000, guid: f8f89be99bba4794cbfc3cbd05d38d44, type: 3}
+  hover: {fileID: 8300000, guid: 3e273f3a1a3cf6448b1bfaba14dcb390, type: 3}
+  gameover: {fileID: 8300000, guid: bfa120eacf001c24bbd37dba988b9749, type: 3}
 --- !u!4 &1160830893
 Transform:
   m_ObjectHideFlags: 0
@@ -18542,7 +18547,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1454857004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18618,8 +18623,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 480712798}
   - {fileID: 704934754}
+  - {fileID: 480712798}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -42876,6 +42881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1125b76af1b04fc4b83224787863a45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 1160830892}
   gameOverUI: {fileID: 30542605}
   anyKeyAction: {fileID: -3509137011508800115, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   gameOver: 0
@@ -42891,8 +42897,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc091299f403ec24ea9ccc53c620155d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 1160830892}
   pauseAction: {fileID: 9048814556312041949, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   pauseMenu: {fileID: 1454857003}
+  isPaused: 0
 --- !u!4 &1787319449
 Transform:
   m_ObjectHideFlags: 0
@@ -44160,10 +44168,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 30542609}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 999, y: 999}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2074989190
 MonoBehaviour:

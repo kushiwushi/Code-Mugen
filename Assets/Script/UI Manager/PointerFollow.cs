@@ -4,7 +4,7 @@ public class PointerFollow : MonoBehaviour
 {
     private Camera cam;
     private Vector3 mousePos;
-    [SerializeField] private BuffUIController buffUIController;
+    [SerializeField] private PauseGame pauseGame;
 
     void Awake() {
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -12,7 +12,7 @@ public class PointerFollow : MonoBehaviour
 
     void Update()
     {
-        if (!buffUIController.IsPaused)
+        if (!pauseGame.isPaused)
         {
             AimMousePoint();
         }

@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private PlayerStats playerStats;
-    [SerializeField] private BuffUIController buffUI;
+    [SerializeField] private PauseGame pauseGame;
     private Rigidbody2D rb;
     private SpriteRenderer playerSprite;
     private Vector3 mousePos;
@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.linearVelocity = moveInput * currMoveSpeed;
 
-        if (!buffUI.IsPaused)
+        if (!pauseGame.isPaused)
         {
             AimMousePoint();
         }
