@@ -9,6 +9,7 @@ public class WeaponTrigger : MonoBehaviour
         if (other.TryGetComponent(out Enemy enemy))
         {
             enemy.takeDamage(playerStats.Damage);
+            enemy.ApplyKnockback(2f, 0.3f);
         }
     }
 }

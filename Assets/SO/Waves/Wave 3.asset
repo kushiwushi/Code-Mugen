@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: Wave 3
   m_EditorClassIdentifier: 
   enemies:
-  - enemyPrefab: {fileID: 4340060592865647759, guid: d8a4811eb61f13d4490e89682dbfbbfb, type: 3}
-    count: 3
+  - enemyPrefab: {fileID: 7834596177873754719, guid: d8a4811eb61f13d4490e89682dbfbbfb, type: 3}
+    count: 10
     spawnDelay: 2
   - enemyPrefab: {fileID: 869597763151480132, guid: 40d91c59bd2a1e245bf2802e9d20ab74, type: 3}
-    count: 3
+    count: 10
     spawnDelay: 2
-  - enemyPrefab: {fileID: 4340060592865647759, guid: d8a4811eb61f13d4490e89682dbfbbfb, type: 3}
-    count: 3
+  - enemyPrefab: {fileID: 7834596177873754719, guid: d8a4811eb61f13d4490e89682dbfbbfb, type: 3}
+    count: 10
     spawnDelay: 2
   - enemyPrefab: {fileID: 869597763151480132, guid: 40d91c59bd2a1e245bf2802e9d20ab74, type: 3}
-    count: 3
+    count: 10
     spawnDelay: 2
-  waveDelay: 10
+  waveDelay: 5

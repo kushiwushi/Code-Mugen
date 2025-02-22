@@ -13,7 +13,7 @@ public class PlayerStats : MonoBehaviour
 
     [Header("Offensives")]
     [SerializeField] private float damage = 20f;
-    [SerializeField] private float haste = 2f;
+    [SerializeField] private float haste = 3f;
     [SerializeField] private float critRate = 10f;
 
     [Header("Miscallenous")]

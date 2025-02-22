@@ -1,5 +1,3 @@
-
-using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -76,12 +74,7 @@ public class PlayerMovement : MonoBehaviour
             currMoveSpeed = 25f;
             Invoke("DashStop", DashDuration);
             Invoke("ResetDashCooldown", DashCooldown);
-            Debug.Log("Dash");
 
-        }
-        else
-        {
-            Debug.Log("On cooldown");
         }
     }
 

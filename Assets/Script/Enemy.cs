@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, HealthComponent
+public class Enemy : MonoBehaviour, DamageComponent
 {
     Transform target;
     Vector2 moveDirection;
+    Vector2 knockbackVelocity;
     SpriteRenderer sprite;
     Animator animator;
     Rigidbody2D rb;
     CircleCollider2D circleCollider;
+    public TotalPoints tpUI;
 
     public float moveSpeed = 1.5f;
     public float damage = 20;
+    private float knockbackTimer = 0f;
 
     public static List<Enemy> allEnemies = new List<Enemy>();
 
@@ -51,6 +55,8 @@ public class Enemy : MonoBehaviour, HealthComponent
         //play death animatoin if dead
         if (Health <= 0) {
 
+            tpUI.setPoints(Random.Range(20,101));
+
             circleCollider.enabled = false; //stops restarting animation state
             animator.SetTrigger("Kill");
             DropItems(); // Call DropItems *here* when the enemy is dead
@@ -59,6 +65,12 @@ public class Enemy : MonoBehaviour, HealthComponent
 
         //play hit animation if still alive
         animator.SetTrigger("Hit");
+    }
+
+    //knockback when hit
+    public void ApplyKnockback(float force, float duration) {
+        knockbackVelocity = -moveDirection * force;
+        knockbackTimer = duration;
     }
 
     //called by Death Animation Event State
@@ -91,6 +103,9 @@ public class Enemy : MonoBehaviour, HealthComponent
 
     void Start() {
         Health = 60f;
+        if (tpUI == null) {
+        tpUI = FindFirstObjectByType<TotalPoints>(); // Finds the active TotalPoints instance
+        }
     }
 
     void Update() {
@@ -118,7 +133,10 @@ public class Enemy : MonoBehaviour, HealthComponent
     }
 
     private void FixedUpdate() {
-        if (target) {
+        if (knockbackTimer > 0) {
+            rb.MovePosition(rb.position + knockbackVelocity * Time.fixedDeltaTime);
+            knockbackTimer -= Time.fixedDeltaTime;
+        } else if (target) {
             rb.MovePosition(rb.position + moveSpeed * Time.fixedDeltaTime * moveDirection);
         }
     }
