@@ -7,6 +7,7 @@ public class PlayerHealth : MonoBehaviour, HealthComponent
 
     public float currentHealth; //Actual health value
     public float maxHealth; //Max health value
+    public EndGame endGame; // Drag your EndGame script here.
 
     //The Health property from the interface
     public float Health
@@ -27,6 +28,7 @@ public class PlayerHealth : MonoBehaviour, HealthComponent
     public void takeDamage(float amount) {
         Health -= CalculateDamgeTaken(amount);
         healthUI.SetHealth(Health);
+        CheckForDeath();
     }
 
     public float CalculateDamgeTaken(float amount) {
@@ -42,5 +44,13 @@ public class PlayerHealth : MonoBehaviour, HealthComponent
         }
 
         healthUI.SetHealth(Health);
+    }
+
+    private void CheckForDeath()
+    {
+        if (currentHealth <= 0)
+        {
+            endGame.GameOver(); // Trigger game over
+        }
     }
 }
