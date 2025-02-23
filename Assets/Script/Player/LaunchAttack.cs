@@ -17,7 +17,6 @@ public class LaunchAttack : MonoBehaviour
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
-
     void Start() {
         StartCoroutine(Attack()); //start auto attack
     }

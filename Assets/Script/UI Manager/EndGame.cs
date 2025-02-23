@@ -2,10 +2,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using System.Collections;
+using TMPro;
 
 public class EndGame : MonoBehaviour
 {
     [SerializeField] AudioManager audioManager;
+    [SerializeField] TMP_Text tpUI;
+    [SerializeField] TotalPoints totalPoints;
     public GameObject gameOverUI;
     public InputActionReference anyKeyAction;
     public bool gameOver = false;
@@ -43,6 +46,7 @@ public class EndGame : MonoBehaviour
         {
             audioManager.PlaySFX(audioManager.gameover);
             audioManager.StopMusicSource();
+            tpUI.text = $"Total Points: {totalPoints.totalPoints}";
 
             StartCoroutine(keyCooldown());
 

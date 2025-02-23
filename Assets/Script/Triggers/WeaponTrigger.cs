@@ -11,5 +11,10 @@ public class WeaponTrigger : MonoBehaviour
             enemy.takeDamage(playerStats.Damage);
             enemy.ApplyKnockback(2f, 0.3f);
         }
+
+        if (other.TryGetComponent(out BigEnemy bigEnemy))
+        {
+            bigEnemy.takeDamage(playerStats.Damage);
+        }
     }
 }

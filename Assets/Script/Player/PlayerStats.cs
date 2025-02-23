@@ -66,7 +66,7 @@ public class PlayerStats : MonoBehaviour
 
     public void SetHaste(float value)
     {
-        haste *= value;
+        haste *= 1f - value;
     }
 
     public void SetLuck(float value)

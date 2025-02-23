@@ -97,5 +97,3 @@ public class WaveManager : MonoBehaviour
         return spawnPosition;
     }
 }
-
-

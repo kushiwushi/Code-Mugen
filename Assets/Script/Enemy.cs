@@ -38,7 +38,7 @@ public class Enemy : MonoBehaviour, DamageComponent
     public List<ItemDrop> itemDrops;
 
     //reset enemy states when re-spawned from object loop
-    public void ResetEnemy() {
+    public virtual void ResetEnemy() {
         Health = 60f;
         circleCollider.enabled = true;
         sprite.enabled = true;
@@ -48,7 +48,7 @@ public class Enemy : MonoBehaviour, DamageComponent
         sprite.color = spriteColor;
     }
 
-    public void takeDamage(float amount) {
+    public virtual void takeDamage(float amount) {
         Health -= amount;
         animator.ResetTrigger("Hit");
 
@@ -101,7 +101,7 @@ public class Enemy : MonoBehaviour, DamageComponent
         rb.freezeRotation = true;
     }
 
-    void Start() {
+    protected virtual void Start() {
         Health = 60f;
         if (tpUI == null) {
         tpUI = FindFirstObjectByType<TotalPoints>(); // Finds the active TotalPoints instance

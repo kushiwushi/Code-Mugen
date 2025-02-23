@@ -8,11 +8,13 @@ public class BuffUIController : MonoBehaviour
 {
     public GameObject panel;
     public Button[] buttons;
+    public TMP_Text[] stats;
     [SerializeField] private BuffSystem buffSystem;
     [SerializeField] private Sprite nullPlaceholder;
     [SerializeField] private AudioSource bgmController;
     [SerializeField] private AudioManager sfxController;
     [SerializeField] private PauseGame pauseGame;
+    [SerializeField] private PlayerStats playerStats;
 
     private void Start()
     {
@@ -23,6 +25,7 @@ public class BuffUIController : MonoBehaviour
     {
         sfxController.PlaySFX(sfxController.LevelUp);
         RandomizeBuffList();
+        DisplayStats();
     }
 
     private void RandomizeBuffList()
@@ -59,6 +62,19 @@ public class BuffUIController : MonoBehaviour
                             buttons[i].onClick.RemoveAllListeners();
                     }
             }
+        }
+    }
+
+    private void DisplayStats() {
+        string[] statValues = {
+            $"Damage: {playerStats.Damage}",
+            $"Haste: {(playerStats.AttackSpeed - 1) * 100:F0}%",
+            $"Movespeed: {playerStats.MoveSpeed}",
+            $"Defense: {playerStats.Defense}"
+        };
+
+        for (int i = 0; i < stats.Length; i++) {
+            stats[i].text = statValues[i];
         }
     }
 
