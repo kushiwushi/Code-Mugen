@@ -67,10 +67,11 @@ public class BuffUIController : MonoBehaviour
 
     private void DisplayStats() {
         string[] statValues = {
-            $"Damage: {playerStats.Damage}",
-            $"Haste: {(playerStats.AttackSpeed - 1) * 100:F0}%",
-            $"Movespeed: {playerStats.MoveSpeed}",
-            $"Defense: {playerStats.Defense}"
+            $"Damage:             {playerStats.Damage}",
+            $"Haste:              {(1 - (playerStats.AttackSpeed / 2)) * 100}%",
+            $"Movespeed:          {playerStats.MoveSpeed}",
+            $"Defense:            {playerStats.Defense}",
+            $"Pickup Range:       {playerStats.PickupRange * 100}%"
         };
 
         for (int i = 0; i < stats.Length; i++) {

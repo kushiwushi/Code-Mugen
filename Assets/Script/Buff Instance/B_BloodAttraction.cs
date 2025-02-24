@@ -1,14 +1,14 @@
 using UnityEngine;
 
-public class B_SanguineAegis : BuffBase
+public class B_BloodAttraction : BuffBase
 {
     [Header("EDIT THIS FIELD ONLY - ABOVE IS INHERITED")]
     [SerializeField] private Sprite buffSprite;
 
     public override void Initialize()
     {
-        buffName = "Sanguine Aegis";
-        buffDescription = "Increase defense by 5";
+        buffName = "Blood Attraction";
+        buffDescription = "Increase pick up range by 30%";
         sprite = buffSprite;
         isPassive = true;
     }
@@ -17,7 +17,7 @@ public class B_SanguineAegis : BuffBase
     {
         if (player.TryGetComponent(out PlayerStats playerStats))
         {
-          playerStats.SetDefense(5);
+          playerStats.SetPickupRange(0.3f);
         }
     }
 }

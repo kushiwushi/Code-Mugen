@@ -127,7 +127,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tpUI: {fileID: 0}
   moveSpeed: 1.5
-  damage: 15
+  damage: 20
+  knockbackTimer: 0
+  knockbackVelocity: {x: 0, y: 0}
+  moveDirection: {x: 0, y: 0}
   expPrefab: {fileID: 6943353031891263408, guid: 6f2c2daf8edb41c4982f1fdd43bbab6c, type: 3}
   itemDrops:
   - itemPrefab: {fileID: 6839299914736497211, guid: cd751000c4a05424582cf4809b79edb0, type: 3}
@@ -194,4 +197,4 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.07
+  m_Radius: 0.09

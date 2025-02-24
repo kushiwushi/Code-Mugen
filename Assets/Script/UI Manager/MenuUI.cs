@@ -19,7 +19,7 @@ public class MenuUI : MonoBehaviour
         transition.SetTrigger("OnPlay");
         audioManager.PlaySFX(audioManager.play);
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.5f);
 
         SceneManager.LoadScene(idx);
     }

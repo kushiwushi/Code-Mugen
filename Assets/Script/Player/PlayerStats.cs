@@ -3,24 +3,25 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    [SerializeField] private int playerLevel = 1;
+    [SerializeField] private int playerLevel;
 
     [Header("Self")]
-    [SerializeField] private float maxHealth = 100f;
-    [SerializeField] private float defense = 5f;
-    [SerializeField] private float moveSpeed = 3f;
-    [SerializeField] private float luck = 0f;
+    [SerializeField] private float maxHealth;
+    [SerializeField] private float defense;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float luck;
 
     [Header("Offensives")]
-    [SerializeField] private float damage = 20f;
-    [SerializeField] private float haste = 3f;
-    [SerializeField] private float critRate = 10f;
+    [SerializeField] private float damage;
+    [SerializeField] private float haste;
+    [SerializeField] private float critRate;
 
     [Header("Miscallenous")]
-    [SerializeField] private float pickupRange = 20f;
+    [SerializeField] private float pickupRange;
 
     [Header("Scripts")]
     [SerializeField] PlayerMovement playerMovement;
+    [SerializeField] PickupRange pickupRangeScript;
 
 
     //I did this so you can modify the values through the inspector whilst keeping the variables private
@@ -81,6 +82,7 @@ public class PlayerStats : MonoBehaviour
 
     public void SetPickupRange(float value)
     {
-        pickupRange *= value;
+        pickupRange += pickupRange * value;
+        pickupRangeScript.UpdateRange();
     }
 }

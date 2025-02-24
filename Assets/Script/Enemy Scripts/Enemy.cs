@@ -6,8 +6,6 @@ using UnityEngine;
 public class Enemy : MonoBehaviour, DamageComponent
 {
     Transform target;
-    Vector2 moveDirection;
-    Vector2 knockbackVelocity;
     SpriteRenderer sprite;
     Animator animator;
     Rigidbody2D rb;
@@ -15,8 +13,10 @@ public class Enemy : MonoBehaviour, DamageComponent
     public TotalPoints tpUI;
 
     public float moveSpeed = 1.5f;
-    public float damage = 3;
-    private float knockbackTimer = 0f;
+    public float damage = 10;
+    public float knockbackTimer = 0f;
+    public Vector2 knockbackVelocity;
+    public Vector2 moveDirection;
 
     public static List<Enemy> allEnemies = new List<Enemy>();
 
@@ -68,7 +68,7 @@ public class Enemy : MonoBehaviour, DamageComponent
     }
 
     //knockback when hit
-    public void ApplyKnockback(float force, float duration) {
+    public virtual void ApplyKnockback(float force, float duration) {
         knockbackVelocity = -moveDirection * force;
         knockbackTimer = duration;
     }
@@ -144,7 +144,7 @@ public class Enemy : MonoBehaviour, DamageComponent
 
     //buggy dmg pls fix qwq, should tick dmg per second..
     private Coroutine damageCoroutine;
-    private float tickRate = 0.5f; // Adjust tick rate as needed
+    private float tickRate = 0.8f; // Adjust tick rate as needed
 
     private void OnTriggerEnter2D(Collider2D other)
     {

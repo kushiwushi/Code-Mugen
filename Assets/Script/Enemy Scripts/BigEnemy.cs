@@ -18,6 +18,11 @@ public class BigEnemy : Enemy
         HealthBar.value = Health;
     }
 
+    public override void ApplyKnockback(float force, float duration) {
+        knockbackVelocity = -moveDirection * (force - 0.2f); //lesser knockback force for bosses
+        knockbackTimer = duration - 1.5f; //lesser duration for bosses
+    }
+
     public override void takeDamage(float amount) {
         base.takeDamage(amount);
         HealthBar.value = Health;
