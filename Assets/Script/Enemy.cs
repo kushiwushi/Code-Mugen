@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour, DamageComponent
     public TotalPoints tpUI;
 
     public float moveSpeed = 1.5f;
-    public float damage = 20;
+    public float damage = 3;
     private float knockbackTimer = 0f;
 
     public static List<Enemy> allEnemies = new List<Enemy>();
@@ -144,30 +144,31 @@ public class Enemy : MonoBehaviour, DamageComponent
 
     //buggy dmg pls fix qwq, should tick dmg per second..
     private Coroutine damageCoroutine;
-    private float tickRate = 1f;
+    private float tickRate = 0.5f; // Adjust tick rate as needed
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.TryGetComponent(out PlayerHealth playerHealth))
         {
-            playerHealth.takeDamage(damage);
-            damageCoroutine = StartCoroutine(tickDamge(playerHealth));
+            damageCoroutine = StartCoroutine(TickDamage(playerHealth));
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (damageCoroutine != null)
+        if (other.TryGetComponent(out PlayerHealth playerHealth) && damageCoroutine != null)
         {
             StopCoroutine(damageCoroutine);
             damageCoroutine = null;
         }
     }
 
-    IEnumerator tickDamge(PlayerHealth playerHealth) {
-        while(true) {
-            yield return new WaitForSeconds(tickRate);
+    IEnumerator TickDamage(PlayerHealth playerHealth)
+    {
+        while (true)
+        {
             playerHealth.takeDamage(damage);
+            yield return new WaitForSeconds(tickRate);
         }
     }
 }
