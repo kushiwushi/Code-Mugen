@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec15a929dd2ad384bab8cf1b60530b36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buffName: 
-  buffDescription: 
+  buffName: Bloody Scythe
+  buffDescription: Increase damage by 2x
   sprite: {fileID: 0}
-  isPassive: 0
-  buffSprite: {fileID: 2105066510464853145, guid: 1f1bed232501a184ca8c0ba2471d19d5, type: 3}
+  isPassive: 1
+  buffSprite: {fileID: 21300000, guid: 1f1bed232501a184ca8c0ba2471d19d5, type: 3}

@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9976b2a50214c854cb9957d843251aac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buffName: 
-  buffDescription: 
-  sprite: {fileID: 0}
-  isPassive: 0
-  buffSprite: {fileID: -5749834499940599888, guid: d3b7095a28a48864ca0fff402cad67ae, type: 3}
+  buffName: Speedy Sandals
+  buffDescription: Increase movement speed by 50%
+  sprite: {fileID: 7698520568785367736, guid: acaed6fc52b88b8499b7531485c39872, type: 3}
+  isPassive: 1
+  buffSprite: {fileID: 21300000, guid: acaed6fc52b88b8499b7531485c39872, type: 3}

@@ -141,8 +141,32 @@ public class Enemy : MonoBehaviour, DamageComponent
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if (other.TryGetComponent(out PlayerHealth playerHealth)) {
+
+    //buggy dmg pls fix qwq, should tick dmg per second..
+    private Coroutine damageCoroutine;
+    private float tickRate = 1f;
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.TryGetComponent(out PlayerHealth playerHealth))
+        {
+            playerHealth.takeDamage(damage);
+            damageCoroutine = StartCoroutine(tickDamge(playerHealth));
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (damageCoroutine != null)
+        {
+            StopCoroutine(damageCoroutine);
+            damageCoroutine = null;
+        }
+    }
+
+    IEnumerator tickDamge(PlayerHealth playerHealth) {
+        while(true) {
+            yield return new WaitForSeconds(tickRate);
             playerHealth.takeDamage(damage);
         }
     }

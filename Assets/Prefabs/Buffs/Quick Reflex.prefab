@@ -48,4 +48,4 @@ MonoBehaviour:
   buffDescription: 
   sprite: {fileID: 0}
   isPassive: 0
-  buffSprite: {fileID: -8035117715992697044, guid: 405ab6e3d6b51f6458f009251704e997, type: 3}
+  buffSprite: {fileID: 21300000, guid: 405ab6e3d6b51f6458f009251704e997, type: 3}
