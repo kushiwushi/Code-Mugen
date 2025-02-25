@@ -45,3 +45,11 @@
 *.rns filter=lfs diff=lfs merge=lfs -text
 *.reason filter=lfs diff=lfs merge=lfs -text
 *.lxo filter=lfs diff=lfs merge=lfs -text
+
+
+#Ignore shader labs from language detection
+*.shader linguist-vendored
+*.cginc linguist-vendored
+
+# Ensure C# files are counted
+*.cs linguist-language=C#
