@@ -27,7 +27,8 @@ Font - https://datagoblin.itch.io/monogram <br>
 Dino Sprite - https://arks.itch.io/dino-characters <br>
 World - Credit to the respective owner (still looking for his link)
 
-<br><br>
+<br>
+
 ## License
 
 Copyright (c) 2025 Koi 
