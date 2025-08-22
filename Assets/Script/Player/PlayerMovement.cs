@@ -46,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
 
         //flip horizontantly based on the mouse position
         playerSprite.flipX = rotation.x < -0.5f;
+        
     }
 
     //Play animation for the player whichever state it is, using Input System Package
@@ -65,15 +66,25 @@ public class PlayerMovement : MonoBehaviour
     public void Dash(InputAction.CallbackContext context)
     {
 
-        if (DashOffCooldown == true && context.performed)
+        if (DashOffCooldown == true && context.performed) // maybe teleport based on mouse position?
         {
             // add a duration for the dash and also uhh cooldown ig, also the changing of rb.linearVelocity doesn't work so fix that
+
+            Vector2 mult = new Vector2(5.0f, 5.0f);
+            Vector2 viewportPoint = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+            Vector2 centeredViewportPoint = new Vector2(viewportPoint.x - 0.5f, viewportPoint.y - 0.5f);
+            Vector2 mouseRaw = Input.mousePosition;
+            Vector2 mouseRawNormalized = mouseRaw.normalized;
             DashOffCooldown = false;
-            float DashDuration = 0.2f;
-            int DashCooldown = 3; // longer cooldowns maybe, this is way too short and easily usable to get out of tight spots
-            currMoveSpeed = 25f;
+            float DashCooldown = 0.5f; // longer cooldowns maybe, this is way too short and easily usable to get out of tight spots
+            int DashDuration = 0;
+            rb.position = rb.position + centeredViewportPoint * 5;
             Invoke("DashStop", DashDuration);
             Invoke("ResetDashCooldown", DashCooldown);
+            Debug.Log(centeredViewportPoint + "centeredViewportPoint");
+            
+            
+            
 
         }
     }
